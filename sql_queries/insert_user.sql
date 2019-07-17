@@ -1,0 +1,1 @@
+INSERT INTO users (email, username, bio) values ('name@email.com', 'joebloggs', 'biography');

@@ -2,92 +2,34 @@
 
 ## Server
 
-Commands must be run from the `server` directory:
+For this project we used Apollo, Express and Graphql to initiate an Apollo app that would allow us to query a databse using GraphQL
 
-### Installation
+### Technologies used:
 
-```bash
-npm install
-```
+- Apollo Server
+- GraphQL
+- GraphQL Playground
+- npm
+- Node.js
+- Express
+- Yarn
+- Posgresql
+- psql command line
 
-### Run
+### Personal Learnings:
 
-```bash
-npm run start:dev
-```
+- How to create an instance of an Apollo app and how to provide it context, as well as assigning it enviroment variables.
 
-### Tests
+- How to link GraphQl queries to their correct resolvers, and how to provide;
+  • The SQL code needed for the functions
+  • How to provide SQL with values from JS to make them dynamic
 
-Just linting:
+- How the GraphQL schema dictates the form and input or query must take.
 
-```bash
-npm run lint
-```
+- How to use the try and catch clauses to handle errors correctly, returning useful error messages  without crashing the app.
 
-Run linting, and fix any errors:
+- How to go about refactoring completely baffling code.
 
-```bash
-npm run lint:fix
-```
-
-Run Jest tests:
-
-```
-npm run jest
-```
-
-Run Jest tests, and watch for changes:
-
-```bash
-npm run jest:watch
-```
-
-Run all tests:
-
-```bash
-npm run test
-```
-
-## Client
-
-Commands must be run from the `client` directory:
-
-### Installation
-
-```bash
-npm install
-```
-
-### Run
-
-```bash
-npm start
-```
-
-### Build
-
-```bash
-npm run build
-```
-
-### Tests
-
-Just linting:
-
-```bash
-npm run lint
-```
-
-Run linting, and fix any errors:
-
-```bash
-npm run lint:fix
-```
-
-Run all tests:
-
-```bash
-npm run test
 ```
 
 

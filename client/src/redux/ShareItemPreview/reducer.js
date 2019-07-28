@@ -18,10 +18,6 @@ const initialState = {
   description: "Describe your item",
   tags: [],
   created: new Date(),
-  itemowner: {
-    fullname: "Oli",
-    email: "oli@mail.com"
-  },
   imageurl: "http://via.placeholder.com/350x250?text=Please select an image"
 };
 

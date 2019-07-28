@@ -96,6 +96,7 @@ export const VIEWER_QUERY = gql`
     viewer {
       id
       email
+      fullname
     }
   }
 `;
@@ -118,6 +119,8 @@ export const LOGIN_MUTATION = gql`
   mutation login($user: LoginInput!) {
     login(user: $user) {
       id
+      email
+      fullname
     }
   }
 `;

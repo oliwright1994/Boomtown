@@ -15,7 +15,7 @@ import { NavLink } from "react-router-dom";
 var moment = require("moment");
 
 const ItemCard = ({ item, classes, viewer }) => {
-  const { title, description, imageurl, tags, itemowner, created } = item;
+  const { title, description, imageurl, tags, created, itemowner } = item;
   return (
     <Card className={classes.root}>
       <CardMedia
@@ -34,17 +34,19 @@ const ItemCard = ({ item, classes, viewer }) => {
         <CardContent className={classes.cardContent}>
           <Box className={classes.flexRow}>
             <NavLink
-              to={`/profile/${itemowner.id}`}
+              to={`/profile/${!itemowner ? viewer.id : itemowner.id}`}
               className={classes.navLink}
             >
               <Gravatar
                 className={classes.profilePicture}
                 size={40}
-                email={itemowner.email}
+                email={!itemowner ? viewer.email : itemowner.email}
               />
             </NavLink>
             <div>
-              <Typography component="p"> {itemowner.fullname}</Typography>
+              <Typography component="p">
+                {!itemowner ? viewer.fullname : itemowner.fullname}
+              </Typography>
               <Typography className={classes.captionStyle} variant="caption">
                 {created ? moment(created).fromNow() : null}
               </Typography>
@@ -61,11 +63,11 @@ const ItemCard = ({ item, classes, viewer }) => {
             >
               {tags.map(tag => tag.title).join(", ")}
             </Typography>
-            <Typography variant="p">{description}</Typography>
+            <Typography component="p">{description}</Typography>
           </Box>
         </CardContent>
         <CardActions>
-          {viewer.id != itemowner.id ? (
+          {itemowner && viewer.id !== itemowner.id ? (
             <Button variant="outlined" className={classes.borrowButton}>
               BORROW
             </Button>

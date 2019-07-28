@@ -120,14 +120,12 @@ class AccountForm extends Component {
               </Grid>
             </FormControl>
             <Typography className={classes.errorMessage}>
-              <Typography className={classes.errorMessage}>
-                {(this.state.error &&
-                  this.state.formToggle &&
-                  this.state.error.graphQLErrors[0].message) ||
-                  (this.state.error &&
-                    !this.state.formToggle &&
-                    this.state.error.graphQLErrors[0].message)}
-              </Typography>
+              {(this.state.error &&
+                this.state.formToggle &&
+                this.state.error.graphQLErrors[0].message) ||
+                (this.state.error &&
+                  !this.state.formToggle &&
+                  this.state.error.graphQLErrors[0].message)}
             </Typography>
           </form>
         )}

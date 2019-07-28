@@ -8,7 +8,11 @@ For this project we used Apollo, Express and Graphql to initiate an Apollo app t
 - GraphQL
 - GraphQL Playground
 - npm
+- Node.js
 - Express
+- Yarn
+- Posgresql
+- psql command line
 
 ## Personal Learnings:
 
@@ -20,6 +24,6 @@ For this project we used Apollo, Express and Graphql to initiate an Apollo app t
 
 - How the GraphQL schema dictates the form and input or query must take.
 
-- How to use the try and catch clauses to handle errors correctly, without crashing you program.
+- How to use the try and catch clauses to handle errors correctly, returning useful error messages  without crashing the app.
 
 - How to go about refactoring completely baffling code.

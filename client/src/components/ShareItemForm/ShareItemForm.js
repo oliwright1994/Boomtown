@@ -113,7 +113,6 @@ class ShareItemForm extends Component {
 
   render() {
     const { tags, updateItem, resetItemImage } = this.props;
-    console.log(tags);
     return (
       <ViewerContext.Consumer>
         {({ viewer }) => (
@@ -140,8 +139,7 @@ class ShareItemForm extends Component {
                     />
                     <div>
                       <div>
-                        <h1>Share.</h1>
-                        <h1>Borrow.</h1>
+                        <h1>Share. Borrow.</h1>
                         <h1>Prosper.</h1>
                       </div>
                       <FormControl fullWidth>

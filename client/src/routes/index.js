@@ -17,7 +17,7 @@ export default () => (
         if (!viewer) {
           return (
             <Switch>
-              <Route path="/welcome" component={HomeContainer} />
+              <Route exact path="/welcome" component={HomeContainer} />
               <Redirect from="*" to="/welcome" />
             </Switch>
           );
@@ -26,9 +26,13 @@ export default () => (
           <Fragment>
             <NavBar />
             <Switch>
-              <PRoute path="/welcome" component={HomeContainer} />
-              <PRoute path="/items" component={ItemsContainer} />
-              <PRoute path="/profile" exact component={ProfileContainer} />
+              <PRoute exact path="/items" component={ItemsContainer} />
+              <PRoute
+                exact
+                path="/profile"
+                exact
+                component={ProfileContainer}
+              />
               <PRoute
                 exact
                 path="/profile/:userid"

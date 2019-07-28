@@ -15,7 +15,6 @@ module.exports = postgres => {
       };
       try {
         const user = await postgres.query(newUserInsert);
-        console.log(user.rows[0]);
         return user.rows[0];
       } catch (e) {
         switch (true) {
@@ -30,7 +29,7 @@ module.exports = postgres => {
     },
     async getUserAndPasswordForVerification(email) {
       const findUserQuery = {
-        text: "SELECT id, email, password FROM users WHERE email = $1 LIMIT 1",
+        text: "SELECT * FROM users WHERE email = $1 LIMIT 1",
         values: [email]
       };
       try {

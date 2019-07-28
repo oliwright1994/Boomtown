@@ -3,13 +3,13 @@ module.exports = `
   scalar Date
 
   enum Role {
-    VIEWER  
+    VIEWER
   }
-  
+
   directive @auth(
     requires: Role = VIEWER,
   ) on OBJECT | FIELD_DEFINITION
-  
+
   type Item @auth(requires: VIEWER) {
     id: ID!
     title: String!
@@ -49,10 +49,10 @@ module.exports = `
   }
 
   input AssignedBorrower {
-    id: String! 
+    id: String!
   }
- 
-  input SignupInput {
+
+  input  {
     fullname: String!
     email: String!
     password: String!
@@ -79,7 +79,7 @@ module.exports = `
   type Mutation {
     login(user: LoginInput!): User!
     logout: Boolean!
-    signup(user: SignupInput!): User!
-    addItem (item: NewItemInput!): Item 
+    signup(user: !): User!
+    addItem (item: NewItemInput!): Item
   }
 `;

@@ -1,8 +1,10 @@
-# Boomtown - Server
+# Boomtown
+
+##Server
 
 For this project we used Apollo, Express and Graphql to initiate an Apollo app that would allow us to query a databse using GraphQL
 
-## Technologies used:
+### Technologies used:
 
 - Apollo Server
 - GraphQL
@@ -14,7 +16,7 @@ For this project we used Apollo, Express and Graphql to initiate an Apollo app t
 - Posgresql
 - psql command line
 
-## Personal Learnings:
+### Personal Learnings:
 
 - How to create an instance of an Apollo app and how to provide it context, as well as assigning it enviroment variables.
 
@@ -26,4 +28,34 @@ For this project we used Apollo, Express and Graphql to initiate an Apollo app t
 
 - How to use the try and catch clauses to handle errors correctly, returning useful error messages  without crashing the app.
 
-- How to go about refactoring completely baffling code.
+- How to go about refactoring difficult code.
+
+##Client
+
+For the client side of this project we used React and Apollo client to create a front end whcih would allow us to display users and items from our database as well as add items, and allow users to sign up.
+
+### Technologies used:
+
+- Apollo Client
+- GraphQL
+- Redux
+- yarn
+- React
+- React-Final Form
+- React-Router
+- React-Context Provider
+- Json Web Tokens
+
+### Personal Learnings:
+
+-How to use react components to create different pages, and reuse components between them
+
+-How to route users to different pages on our app based links, redirects and factors such as if they are logged in
+
+-How to use final form to validate user inuputs, as well as handling submission.
+
+-How to implement redux store to allow us to update the item preview in realtime, as the user was entering data into the form
+
+-We used the React Context Provider component to provide data to our components on the current user (viewer) based on data we recieved from the JWT token we generated on user login/sign-up
+
+-We convert data enter on the front end into a form that could be passed to graphQL, allowing us to query and mutate the database from the front end.

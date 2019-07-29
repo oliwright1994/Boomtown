@@ -33,8 +33,16 @@ class ShareItemForm extends Component {
     };
     this.fileInput = React.createRef();
   }
-  onSubmit(formState) {
-    console.log(formState);
+
+  validate(values) {
+    const errors = {};
+    if (!values.title) {
+      errors.title = "Required";
+    }
+    if (!values.description) {
+      errors.description = "Required";
+    }
+    return errors;
   }
 
   applyTags(tags) {
@@ -126,8 +134,8 @@ class ShareItemForm extends Component {
             {addItem => (
               <Form
                 onSubmit={values => this.submitItem(values, addItem, tags)}
-                validate={values => validation(values)}
-                render={({ handleSubmit, pristine, values }) => (
+                validate={values => this.validate(values)}
+                render={({ handleSubmit, pristine, invalid }) => (
                   <form onSubmit={handleSubmit}>
                     <FormSpy
                       subscription={{ values: true }}
@@ -255,6 +263,7 @@ class ShareItemForm extends Component {
                       variant="contained"
                       onClick={console.log}
                       type="submit"
+                      disabled={pristine || invalid}
                     >
                       SHARE
                     </Button>

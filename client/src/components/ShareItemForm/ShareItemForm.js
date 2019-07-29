@@ -125,7 +125,7 @@ class ShareItemForm extends Component {
     const { tags, updateItem, resetItemImage, classes, reset } = this.props;
     return (
       <div>
-        {this.state.done === true ? <Redirect to="/" /> : null}
+        {this.state.done === true ? <Redirect to="/profile" /> : null}
         <ViewerContext.Consumer>
           {({ viewer }) => (
             <Mutation

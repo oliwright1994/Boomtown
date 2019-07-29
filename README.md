@@ -1,6 +1,6 @@
 # Boomtown🏙
 
-##Server
+## Server
 
 For this project we used Apollo, Express and Graphql to initiate an Apollo app that would allow us to query a databse using GraphQL
 
@@ -30,7 +30,7 @@ For this project we used Apollo, Express and Graphql to initiate an Apollo app t
 
 - How to go about refactoring difficult code.
 
-##Client
+## Client
 
 For the client side of this project we used React and Apollo client to create a front end whcih would allow us to display users and items from our database as well as add items, and allow users to sign up.
 

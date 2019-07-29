@@ -146,12 +146,10 @@ class ShareItemForm extends Component {
                         return "";
                       }}
                     />
-                    <div>
+                    <div className={classes.formWrapper}>
                       <div>
-                        <Typography variant="h3" gutterBottom={false}>
-                          Share. Borrow.
-                        </Typography>
-                        <Typography variant="h3" gutterBottom={true}>
+                        <Typography className={classes.tagline}>
+                          Share. Borrow. <br />
                           Prosper.
                         </Typography>
                       </div>
@@ -169,7 +167,11 @@ class ShareItemForm extends Component {
                                       this.fileInput.current.click();
                                     }}
                                   >
-                                    <Typography>Select an Image</Typography>
+                                    <Typography
+                                      className={classes.uploadButtonText}
+                                    >
+                                      Select an Image
+                                    </Typography>
                                   </Button>
                                 ) : (
                                   <Button
@@ -264,6 +266,7 @@ class ShareItemForm extends Component {
                       onClick={console.log}
                       type="submit"
                       disabled={pristine || invalid}
+                      className={classes.shareButton}
                     >
                       SHARE
                     </Button>

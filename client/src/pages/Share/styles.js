@@ -6,7 +6,6 @@ const styles = theme => ({
   preview: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
     width: "50%"
   },
   inputForm: {

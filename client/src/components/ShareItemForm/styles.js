@@ -6,8 +6,20 @@ const styles = theme => ({
     color: "firebrick"
   },
   tagline: {
-    fontSize: 18,
-    fontWeight: "bold"
+    fontSize: 35,
+    fontWeight: 700,
+    marginBottom: 45,
+    lineHeight: "35px"
+  },
+  shareButton: {
+    marginTop: 20
+  },
+  uploadButtonText: {
+    fontSize: 12
+  },
+  formWrapper: {
+    width: "30vw",
+    minWidth: 275
   }
 });
 

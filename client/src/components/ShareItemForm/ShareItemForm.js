@@ -11,13 +11,13 @@ import Typography from "@material-ui/core/Typography";
 import styles from "./styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import ListItemText from "@material-ui/core/ListItemText";
+import { Redirect } from "react-router";
 import {
   updateItem,
   resetItem,
   resetItemImage
 } from "../../redux/ShareItemPreview/reducer";
 import { connect } from "react-redux";
-import validation from "./helpers/validation";
 
 import { Mutation } from "react-apollo";
 import { ADD_ITEM_MUTATION, ALL_ITEMS_QUERY } from "../../apollo/queries";
@@ -114,6 +114,7 @@ class ShareItemForm extends Component {
         });
 
         this.resetFileInput();
+        this.setState({ done: true });
       } catch (e) {
         throw new Error(e);
       }
@@ -123,163 +124,169 @@ class ShareItemForm extends Component {
   render() {
     const { tags, updateItem, resetItemImage, classes, reset } = this.props;
     return (
-      <ViewerContext.Consumer>
-        {({ viewer }) => (
-          <Mutation
-            mutation={ADD_ITEM_MUTATION}
-            refetchQueries={() => [
-              { query: ALL_ITEMS_QUERY, variables: { filter: viewer.id } }
-            ]}
-          >
-            {addItem => (
-              <Form
-                onSubmit={values => this.submitItem(values, addItem, tags)}
-                validate={values => this.validate(values)}
-                render={({ handleSubmit, pristine, invalid }) => (
-                  <form onSubmit={handleSubmit}>
-                    <FormSpy
-                      subscription={{ values: true }}
-                      component={({ values }) => {
-                        if (values) {
-                          this.dispatchUpdate(values, tags, updateItem);
-                        }
-                        return "";
-                      }}
-                    />
-                    <div className={classes.formWrapper}>
-                      <div>
-                        <Typography className={classes.tagline}>
-                          Share. Borrow. <br />
-                          Prosper.
-                        </Typography>
-                      </div>
-                      <FormControl fullWidth>
-                        <Field name="imageurl">
-                          {({ input, meta }) => {
-                            return (
-                              <React.Fragment>
-                                {!this.state.fileSelected ? (
-                                  <Button
-                                    size="medium"
-                                    color="primary"
-                                    variant="contained"
-                                    onClick={() => {
-                                      this.fileInput.current.click();
-                                    }}
-                                  >
-                                    <Typography
-                                      className={classes.uploadButtonText}
+      <div>
+        {this.state.done === true ? <Redirect to="/" /> : null}
+        <ViewerContext.Consumer>
+          {({ viewer }) => (
+            <Mutation
+              mutation={ADD_ITEM_MUTATION}
+              refetchQueries={() => [
+                { query: ALL_ITEMS_QUERY, variables: { id: viewer.id } }
+              ]}
+            >
+              {addItem => (
+                <Form
+                  onSubmit={values => this.submitItem(values, addItem, tags)}
+                  validate={values => this.validate(values)}
+                  render={({ handleSubmit, pristine, invalid }) => (
+                    <form onSubmit={handleSubmit}>
+                      <FormSpy
+                        subscription={{ values: true }}
+                        component={({ values }) => {
+                          if (values) {
+                            this.dispatchUpdate(values, tags, updateItem);
+                          }
+                          return "";
+                        }}
+                      />
+                      <div className={classes.formWrapper}>
+                        <div>
+                          <Typography className={classes.tagline}>
+                            Share. Borrow. <br />
+                            Prosper.
+                          </Typography>
+                        </div>
+                        <FormControl fullWidth>
+                          <Field name="imageurl">
+                            {({ input, meta }) => {
+                              return (
+                                <React.Fragment>
+                                  {!this.state.fileSelected ? (
+                                    <Button
+                                      size="medium"
+                                      color="primary"
+                                      variant="contained"
+                                      onClick={() => {
+                                        this.fileInput.current.click();
+                                      }}
                                     >
-                                      Select an Image
-                                    </Typography>
-                                  </Button>
-                                ) : (
-                                  <Button
-                                    size="medium"
-                                    color="primary"
-                                    variant="outlined"
-                                    onClick={() => {
-                                      this.resetFileInput();
-                                    }}
-                                  >
-                                    <Typography>Reset image</Typography>
-                                  </Button>
-                                )}
-                                <input
-                                  ref={this.fileInput}
-                                  hidden
-                                  type="file"
-                                  accept="image/*"
-                                  id="fileInput"
-                                  onChange={e => this.handleSelectFile(e)}
-                                />
-                              </React.Fragment>
-                            );
-                          }}
-                        </Field>
-                      </FormControl>
-                      <Field
-                        name="title"
-                        required={true}
-                        render={({ input, meta }) => (
-                          <div>
-                            <TextField
-                              fullWidth={true}
-                              label="Name your item."
-                              inputProps={{ ...input }}
-                            />
-                          </div>
-                        )}
-                      />
-                    </div>
-                    <div>
-                      <Field
-                        name="description"
-                        required={false}
-                        render={({ input, meta }) => (
-                          <div>
-                            <TextField
-                              fullWidth={true}
-                              multiline={true}
-                              label="Describe your item."
-                              inputProps={{ ...input }}
-                              rows={5}
-                            />
-                          </div>
-                        )}
-                      />
-                      <FormControl fullWidth>
-                        <InputLabel htmlFor="tags">Add some tags</InputLabel>
-                        <Field name="tags">
-                          {({ input, meta }) => {
-                            return (
-                              <Select
+                                      <Typography
+                                        className={classes.uploadButtonText}
+                                      >
+                                        Select an Image
+                                      </Typography>
+                                    </Button>
+                                  ) : (
+                                    <Button
+                                      size="medium"
+                                      color="primary"
+                                      variant="outlined"
+                                      onClick={() => {
+                                        this.resetFileInput();
+                                      }}
+                                    >
+                                      <Typography>Reset image</Typography>
+                                    </Button>
+                                  )}
+                                  <input
+                                    ref={this.fileInput}
+                                    hidden
+                                    type="file"
+                                    accept="image/*"
+                                    id="fileInput"
+                                    onChange={e => this.handleSelectFile(e)}
+                                  />
+                                </React.Fragment>
+                              );
+                            }}
+                          </Field>
+                        </FormControl>
+                        <Field
+                          name="title"
+                          required={true}
+                          render={({ input, meta }) => (
+                            <div>
+                              <TextField
                                 fullWidth={true}
-                                multiple
-                                value={this.state.selectedTags}
-                                onChange={e => this.handleSelectTag(e)}
-                                renderValue={selected => {
-                                  return this.generateTagsText(tags, selected);
-                                }}
-                              >
-                                {tags &&
-                                  tags.map(tag => (
-                                    <MenuItem key={tag.id} value={tag.id}>
-                                      <Checkbox
-                                        checked={
-                                          this.state.selectedTags.indexOf(
-                                            tag.id
-                                          ) > -1
-                                        }
-                                      />
-                                      <ListItemText primary={tag.title} />
-                                    </MenuItem>
-                                  ))}
-                              </Select>
-                            );
-                          }}
-                        </Field>
-                      </FormControl>
-                    </div>
-                    <Button
-                      variant="contained"
-                      onClick={console.log}
-                      type="submit"
-                      disabled={pristine || invalid}
-                      className={classes.shareButton}
-                    >
-                      SHARE
-                    </Button>
-                    <Typography className={classes.errorMessage}>
-                      {this.state.error}
-                    </Typography>
-                  </form>
-                )}
-              />
-            )}
-          </Mutation>
-        )}
-      </ViewerContext.Consumer>
+                                label="Name your item."
+                                inputProps={{ ...input }}
+                              />
+                            </div>
+                          )}
+                        />
+                      </div>
+                      <div>
+                        <Field
+                          name="description"
+                          required={false}
+                          render={({ input, meta }) => (
+                            <div>
+                              <TextField
+                                fullWidth={true}
+                                multiline={true}
+                                label="Describe your item."
+                                inputProps={{ ...input }}
+                                rows={5}
+                              />
+                            </div>
+                          )}
+                        />
+                        <FormControl fullWidth>
+                          <InputLabel htmlFor="tags">Add some tags</InputLabel>
+                          <Field name="tags">
+                            {({ input, meta }) => {
+                              return (
+                                <Select
+                                  fullWidth={true}
+                                  multiple
+                                  value={this.state.selectedTags}
+                                  onChange={e => this.handleSelectTag(e)}
+                                  renderValue={selected => {
+                                    return this.generateTagsText(
+                                      tags,
+                                      selected
+                                    );
+                                  }}
+                                >
+                                  {tags &&
+                                    tags.map(tag => (
+                                      <MenuItem key={tag.id} value={tag.id}>
+                                        <Checkbox
+                                          checked={
+                                            this.state.selectedTags.indexOf(
+                                              tag.id
+                                            ) > -1
+                                          }
+                                        />
+                                        <ListItemText primary={tag.title} />
+                                      </MenuItem>
+                                    ))}
+                                </Select>
+                              );
+                            }}
+                          </Field>
+                        </FormControl>
+                      </div>
+                      <Button
+                        variant="contained"
+                        onClick={console.log}
+                        type="submit"
+                        disabled={pristine || invalid}
+                        className={classes.shareButton}
+                      >
+                        SHARE
+                      </Button>
+                      <Typography className={classes.errorMessage}>
+                        {this.state.error}
+                      </Typography>
+                    </form>
+                  )}
+                />
+              )}
+            </Mutation>
+          )}
+        </ViewerContext.Consumer>
+      </div>
     );
   }
 }

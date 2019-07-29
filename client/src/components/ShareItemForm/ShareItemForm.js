@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
-import store from "../../redux";
 import { Form, Field, FormSpy } from "react-final-form";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
@@ -18,6 +17,7 @@ import {
   resetItemImage
 } from "../../redux/ShareItemPreview/reducer";
 import { connect } from "react-redux";
+import validation from "./helpers/validation";
 
 import { Mutation } from "react-apollo";
 import { ADD_ITEM_MUTATION, ALL_ITEMS_QUERY } from "../../apollo/queries";
@@ -37,7 +37,7 @@ class ShareItemForm extends Component {
     console.log(formState);
   }
   validate(formState) {
-    console.log("validating");
+    validation(formState);
   }
 
   applyTags(tags) {
@@ -101,18 +101,22 @@ class ShareItemForm extends Component {
   }
 
   submitItem = async (values, addItem, tags) => {
-    const item = { ...values, tags: this.applyTags(tags) };
-    try {
-      await addItem({
-        variables: { item: item }
-      });
-    } catch (e) {
-      throw new Error(e);
+    if (!this.errors) {
+      const item = { ...values, tags: this.applyTags(tags) };
+      try {
+        await addItem({
+          variables: { item: item }
+        });
+
+        this.resetFileInput();
+      } catch (e) {
+        throw new Error(e);
+      }
     }
   };
 
   render() {
-    const { tags, updateItem, resetItemImage } = this.props;
+    const { tags, updateItem, resetItemImage, classes, reset } = this.props;
     return (
       <ViewerContext.Consumer>
         {({ viewer }) => (
@@ -124,8 +128,8 @@ class ShareItemForm extends Component {
           >
             {addItem => (
               <Form
-                onSubmit={value => this.submitItem(value, addItem, tags)}
-                validate={this.validate}
+                onSubmit={values => this.submitItem(values, addItem, tags)}
+                validate={values => this.validate(values)}
                 render={({ handleSubmit, pristine, values }) => (
                   <form onSubmit={handleSubmit}>
                     <FormSpy
@@ -139,8 +143,12 @@ class ShareItemForm extends Component {
                     />
                     <div>
                       <div>
-                        <h1>Share. Borrow.</h1>
-                        <h1>Prosper.</h1>
+                        <Typography variant="h3" gutterBottom={false}>
+                          Share. Borrow.
+                        </Typography>
+                        <Typography variant="h3" gutterBottom={true}>
+                          Prosper.
+                        </Typography>
                       </div>
                       <FormControl fullWidth>
                         <Field name="imageurl">
@@ -189,6 +197,7 @@ class ShareItemForm extends Component {
                         render={({ input, meta }) => (
                           <div>
                             <TextField
+                              fullWidth={true}
                               label="Name your item."
                               inputProps={{ ...input }}
                             />
@@ -203,6 +212,7 @@ class ShareItemForm extends Component {
                         render={({ input, meta }) => (
                           <div>
                             <TextField
+                              fullWidth={true}
                               multiline={true}
                               label="Describe your item."
                               inputProps={{ ...input }}
@@ -217,6 +227,7 @@ class ShareItemForm extends Component {
                           {({ input, meta }) => {
                             return (
                               <Select
+                                fullWidth={true}
                                 multiple
                                 value={this.state.selectedTags}
                                 onChange={e => this.handleSelectTag(e)}
@@ -250,6 +261,9 @@ class ShareItemForm extends Component {
                     >
                       SHARE
                     </Button>
+                    <Typography className={classes.errorMessage}>
+                      {this.state.error}
+                    </Typography>
                   </form>
                 )}
               />

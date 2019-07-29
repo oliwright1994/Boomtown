@@ -33,17 +33,25 @@ const styles = theme => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 10,
-    padding: 7,
+    borderRadius: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 16,
+    paddingRight: 16,
     "&:hover": {
       background: "rgba(0,0,0, .1)"
     }
   },
   shareText: {
     color: "black",
-    fontSize: 12,
+    fontSize: 10,
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
+    fontWeight: 500
+  },
+  shareIcon: {
+    fontSize: 16,
+    marginRight: 3
   },
   menu: {
     borderRadius: "50%",

@@ -9,7 +9,6 @@ import { LOGOUT_MUTATION } from "../../apollo/queries";
 import client from "../../apollo";
 import Menu from "../Menu";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-import FingerprintIcon from "@material-ui/icons/Fingerprint";
 
 const NavBar = ({ classes }) => {
   return (
@@ -30,7 +29,8 @@ const NavBar = ({ classes }) => {
                   variant="body1"
                   className={classes.shareText}
                 >
-                  <AddCircleIcon /> SHARE SOMETHING
+                  <AddCircleIcon className={classes.shareIcon} /> SHARE
+                  SOMETHING
                 </Typography>
               </NavLink>
               <Menu className={classes.menu} />

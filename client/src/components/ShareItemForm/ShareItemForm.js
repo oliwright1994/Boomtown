@@ -36,9 +36,6 @@ class ShareItemForm extends Component {
   onSubmit(formState) {
     console.log(formState);
   }
-  validate(formState) {
-    validation(formState);
-  }
 
   applyTags(tags) {
     return (
@@ -129,7 +126,7 @@ class ShareItemForm extends Component {
             {addItem => (
               <Form
                 onSubmit={values => this.submitItem(values, addItem, tags)}
-                validate={values => this.validate(values)}
+                validate={values => validation(values)}
                 render={({ handleSubmit, pristine, values }) => (
                   <form onSubmit={handleSubmit}>
                     <FormSpy

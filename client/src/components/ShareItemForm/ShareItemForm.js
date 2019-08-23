@@ -224,9 +224,9 @@ class ShareItemForm extends Component {
                               <TextField
                                 fullWidth={true}
                                 multiline={true}
+                                rows={5}
                                 label="Describe your item."
                                 inputProps={{ ...input }}
-                                rows={5}
                               />
                             </div>
                           )}

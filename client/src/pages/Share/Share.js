@@ -2,9 +2,9 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 import Grid from "@material-ui/core/Grid";
-import { Container } from "@material-ui/core";
 import ShareItemForm from "../../components/ShareItemForm";
 import ShareItemPreview from "../../components/ShareItemPreview";
+import PropTypes from "prop-types";
 
 const Share = ({ classes, tags }) => {
   return (
@@ -22,3 +22,12 @@ const Share = ({ classes, tags }) => {
 };
 
 export default withStyles(styles)(Share);
+
+Share.propTypes = {
+  tags: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired
+    })
+  )
+};

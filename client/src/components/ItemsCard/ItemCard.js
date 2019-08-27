@@ -1,18 +1,16 @@
 import React from "react";
 import Gravatar from "react-gravatar";
-import BorrowButton from "../../components/BorrowButton";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
-import { Grid, Button, Box } from "@material-ui/core";
+import { Button, Box } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
-
-var moment = require("moment");
+import moment from "moment";
+import PropTypes from "prop-types";
 
 const ItemCard = ({ item, classes, viewer }) => {
   const { title, description, imageurl, tags, created, itemowner } = item;
@@ -78,4 +76,25 @@ const ItemCard = ({ item, classes, viewer }) => {
   );
 };
 
+ItemCard.propTypes = {
+  item: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    imageurl: PropTypes.string,
+    tags: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired
+      })
+    ),
+    created: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+      .isRequired
+  }).isRequired,
+  viewer: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    fullname: PropTypes.string.isRequired
+  }).isRequired,
+  classes: PropTypes.object
+};
 export default withStyles(styles)(ItemCard);

@@ -27,12 +27,7 @@ export default () => (
             <NavBar />
             <Switch>
               <PRoute exact path="/items" component={ItemsContainer} />
-              <PRoute
-                exact
-                path="/profile"
-                exact
-                component={ProfileContainer}
-              />
+              <PRoute exact path="/profile" component={ProfileContainer} />
               <PRoute
                 exact
                 path="/profile/:userid"

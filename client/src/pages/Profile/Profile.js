@@ -4,11 +4,12 @@ import styles from "./styles";
 import Gravatar from "react-gravatar";
 import { Card, Typography, Grid, Box } from "@material-ui/core";
 import ItemGrid from "../../components/ItemsGrid";
+import PropTypes from "prop-types";
 
 const Profile = ({ classes, user }) => {
   return (
     <div>
-      <Grid className={classes.root} justify="space-evenly" container xs={12}>
+      <Grid className={classes.root} justify="space-evenly" container>
         <Grid item xs={12}>
           <Card className={classes.profileCard}>
             <Box className={classes.rowFlex}>
@@ -43,3 +44,11 @@ const Profile = ({ classes, user }) => {
 };
 
 export default withStyles(styles)(Profile);
+
+Profile.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    fullname: PropTypes.string.isRequired
+  }).isRequired
+};

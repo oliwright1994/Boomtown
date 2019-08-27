@@ -77,8 +77,11 @@ class AccountForm extends Component {
                 render={({ input, meta }) => (
                   <Input
                     id="password"
-                    type="password"
-                    inputProps={{ ...input, autoComplete: "off" }}
+                    inputProps={{
+                      ...input,
+                      type: "password",
+                      autoComplete: "off"
+                    }}
                     value={input.value}
                   />
                 )}

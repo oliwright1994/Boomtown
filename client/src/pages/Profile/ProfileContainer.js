@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Profile from "./Profile";
-import ItemGrid from "../../components/ItemsGrid";
 import { ALL_USER_ITEMS_QUERY } from "../../apollo/queries";
 import FullScreenLoader from "../../components/FullScreenLoader";
 import { ViewerContext } from "../../context/ViewerProvider";

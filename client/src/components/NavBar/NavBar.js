@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { ReactComponent as Logo } from "../../images/boomtown.svg";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
-import { AppBar, Link, Button, Box, Typography } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
 import { Mutation } from "react-apollo";
 import { LOGOUT_MUTATION } from "../../apollo/queries";
@@ -17,7 +17,7 @@ const NavBar = ({ classes }) => {
         mutation={LOGOUT_MUTATION}
         onCompleted={() => client.resetStore()}
       >
-        {logout => (
+        {() => (
           <Box className={classes.root}>
             <NavLink className={classes.navLink} to="/items">
               <Logo className={classes.logo} />

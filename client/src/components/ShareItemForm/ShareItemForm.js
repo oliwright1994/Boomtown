@@ -18,7 +18,7 @@ import {
   resetItemImage
 } from "../../redux/ShareItemPreview/reducer";
 import { connect } from "react-redux";
-
+import PropTypes from "prop-types";
 import { Mutation } from "react-apollo";
 import { ADD_ITEM_MUTATION, ALL_ITEMS_QUERY } from "../../apollo/queries";
 import { ViewerContext } from "../../context/ViewerProvider";
@@ -122,7 +122,7 @@ class ShareItemForm extends Component {
   };
 
   render() {
-    const { tags, updateItem, resetItemImage, classes, reset } = this.props;
+    const { tags, updateItem, classes } = this.props;
     return (
       <div>
         {this.state.done === true ? <Redirect to="/profile" /> : null}
@@ -269,7 +269,6 @@ class ShareItemForm extends Component {
                       </div>
                       <Button
                         variant="contained"
-                        onClick={console.log}
                         type="submit"
                         disabled={pristine || invalid}
                         className={classes.shareButton}
@@ -307,3 +306,12 @@ export default connect(
   null,
   mapDispatchToProps
 )(withStyles(styles)(ShareItemForm));
+
+ShareItemForm.propTypes = {
+  tags: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired
+    })
+  )
+};

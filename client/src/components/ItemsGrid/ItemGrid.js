@@ -1,6 +1,6 @@
 import ItemCard from "../ItemsCard";
 import React from "react";
-import { Grid, Container } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 import { ViewerContext } from "../../context/ViewerProvider";

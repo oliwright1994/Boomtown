@@ -7,7 +7,6 @@ const styles = theme => ({
   },
   profileCard: {
     borderRadius: 2,
-    padding: "5%",
     width: "80vw",
     margin: "auto",
     padding: 48

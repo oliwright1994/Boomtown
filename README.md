@@ -2,7 +2,7 @@
 
 ## Server
 
-For this project we used Apollo, Express and Graphql to initiate an Apollo app that would allow us to query a databse using GraphQL
+For this project we used Apollo, Express and Graphql to initiate an Apollo app that would allow us to query a databse using GraphQL. The aim of Boomtown is to create an app that allows sharing of items between users.
 
 ### Technologies used:
 
@@ -26,7 +26,7 @@ For this project we used Apollo, Express and Graphql to initiate an Apollo app t
 
 - How the GraphQL schema dictates the form and input or query must take.
 
-- How to use the try and catch clauses to handle errors correctly, returning useful error messages  without crashing the app.
+- How to use the try and catch clauses to handle errors correctly, returning useful error messages without crashing the app.
 
 - How to go about refactoring difficult code.
 
@@ -59,3 +59,40 @@ For the client side of this project we used React and Apollo client to create a 
 -We used the React Context Provider component to provide data to our components on the current user (viewer) based on data we recieved from the JWT token we generated on user login/sign-up
 
 -We convert data enter on the front end into a form that could be passed to graphQL, allowing us to query and mutate the database from the front end.
+
+## Installation
+
+Download or clone the repo using:
+
+`git clone https://github.com/oliwright1994/project-01-boomtown.git`
+
+To start the Server, change into the `root/server` directory and run:
+
+`npm run start:dev`
+
+To start the Client app change into the `root/client` directory and run:
+
+`yarn start`
+
+## Screenshots
+
+### Welcome
+
+![Home screen image](./docs/home.png)
+
+### Create an Item
+
+![Home screen image](./docs/creat_item.png)
+
+### Items
+
+![Home screen image](./docs/items.png)
+
+### Profile
+
+![Home screen image](./docs/profile.png)
+
+## Author
+
+Oliver Wright
+[GitHub](https://github.com/oliwright1994)

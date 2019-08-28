@@ -124,3 +124,15 @@ export const LOGIN_MUTATION = gql`
     }
   }
 `;
+
+export const BORROW_ITEM_MUTATION = gql`
+  mutation borrowItem($itemId: ID!, $borrowerId: ID!) {
+    borrowItem(itemId: $itemId, borrowerId: $borrowerId)
+  }
+`;
+
+export const RETURN_ITEM_MUTATION = gql`
+  mutation returnItem($itemId: ID!, $borrowerId: ID!) {
+    returnItem(itemId: $itemId, borrowerId: $borrowerId)
+  }
+`;

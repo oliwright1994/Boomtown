@@ -7,13 +7,22 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
-import { Button, Box } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
 import moment from "moment";
 import PropTypes from "prop-types";
+import BorrowButton from "../BorrowButton";
 
 const ItemCard = ({ item, classes, viewer }) => {
-  const { title, description, imageurl, tags, created, itemowner } = item;
+  const {
+    title,
+    description,
+    imageurl,
+    tags,
+    created,
+    itemowner,
+    borrower
+  } = item;
   return (
     <Card className={classes.root}>
       <CardMedia
@@ -65,10 +74,13 @@ const ItemCard = ({ item, classes, viewer }) => {
           </Box>
         </CardContent>
         <CardActions>
-          {itemowner && viewer.id !== itemowner.id ? (
-            <Button variant="outlined" className={classes.borrowButton}>
-              BORROW
-            </Button>
+          {(itemowner && viewer.id !== itemowner.id && !borrower) ||
+          (borrower && borrower.id === viewer.id) ? (
+            <BorrowButton
+              borrowed={borrower && borrower.id === viewer.id}
+              viewer={viewer}
+              itemId={item.id}
+            />
           ) : null}
         </CardActions>
       </Box>

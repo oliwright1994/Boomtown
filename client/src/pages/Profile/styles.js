@@ -29,6 +29,11 @@ const styles = theme => ({
   },
   bold: {
     fontWeight: "bold"
+  },
+  itemsTitle: {
+    margin: 30,
+    marginLeft: 15,
+    color: theme.palette.primary.main
   }
 });
 

@@ -2,7 +2,7 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 import Gravatar from "react-gravatar";
-import { Card, Typography, Grid, Box } from "@material-ui/core";
+import { Card, Typography, Grid, Box, Container } from "@material-ui/core";
 import ItemGrid from "../../components/ItemsGrid";
 import PropTypes from "prop-types";
 
@@ -35,9 +35,24 @@ const Profile = ({ classes, user }) => {
             <Typography>{user.bio}</Typography>
           </Card>
         </Grid>
-        <Grid item>
-          <ItemGrid items={user.items} />
-        </Grid>
+        {user.borrowed.length !== 0 ? (
+          <Container>
+            <Typography className={classes.itemsTitle}>
+              Borrowed Items
+            </Typography>
+            <Grid item>
+              <ItemGrid items={user.borrowed} />
+            </Grid>
+          </Container>
+        ) : null}
+        <Container>
+          {user.items.length !== 0 ? (
+            <Typography className={classes.itemsTitle}>Your Items</Typography>
+          ) : null}
+          <Grid item>
+            <ItemGrid items={user.items} />
+          </Grid>
+        </Container>
       </Grid>
     </div>
   );

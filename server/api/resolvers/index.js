@@ -1,13 +1,9 @@
 const { ApolloError } = require("apollo-server-express");
 const jwt = require("jsonwebtoken");
 const authMutations = require("./auth");
-// -------------------------------
-const { DateScalar } = require("../custom-types");
 
 module.exports = app => {
   return {
-    // Date: DateScalar,
-
     Query: {
       viewer(root, args, context, info) {
         const user = jwt.decode(context.token, app.get("JWT_SECRET"));
@@ -106,7 +102,23 @@ module.exports = app => {
             user: user.id
           });
           return newItem;
-        } catch (e) {
+        } catch (error) {
+          return new ApolloError(error);
+        }
+      },
+      async borrowItem(parent, args, { pgResource }, info) {
+        try {
+          await pgResource.borrowItem(args.itemId, args.borrowerId);
+          return true;
+        } catch (error) {
+          return new ApolloError(error);
+        }
+      },
+      async returnItem(parent, args, { pgResource }, info) {
+        try {
+          await pgResource.returnItem(args.itemId, args.borrowerId);
+          return true;
+        } catch (error) {
           return new ApolloError(error);
         }
       }

@@ -26,9 +26,6 @@ const styles = theme => ({
     color: theme.palette.typography.primary,
     textDecoration: "none"
   },
-  borrowButton: {
-    fontSize: 11
-  },
   cardContent: { height: 200 },
   flexRow: {
     display: "flex",

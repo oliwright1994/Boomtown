@@ -107,6 +107,28 @@ module.exports = postgres => {
         throw "Could not find any tags for this item";
       }
     },
+    async borrowItem(itemId, borrower) {
+      try {
+        const borrowQuery = {
+          text: `UPDATE items SET borrowerid = $1 WHERE id = $2 AND borrowerid IS NULL`,
+          values: [borrower, itemId]
+        };
+        await postgres.query(borrowQuery);
+      } catch (error) {
+        throw error;
+      }
+    },
+    async returnItem(itemId, borrower) {
+      try {
+        const returnQuery = {
+          text: `UPDATE items SET borrowerid = NULL WHERE id = $1 AND borrowerid = $2`,
+          values: [itemId, borrower]
+        };
+        await postgres.query(returnQuery);
+      } catch (error) {
+        throw error;
+      }
+    },
     async saveNewItem({ item, user }) {
       return new Promise((resolve, reject) => {
         postgres.connect((err, client, done) => {

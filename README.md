@@ -82,15 +82,15 @@ To start the Client app change into the `root/client` directory and run:
 
 ### Create an Item
 
-![Home screen image](./docs/creat_item.png)
+![Add item screen image](./docs/create_item.png)
 
 ### Items
 
-![Home screen image](./docs/items.png)
+![Items screen image](./docs/items.png)
 
 ### Profile
 
-![Home screen image](./docs/profile.png)
+![Profile screen image](./docs/profile.png)
 
 ## Author
 
